@@ -1,0 +1,26 @@
+# debian:buster ARMv7l
+FROM debian@sha256:d9fd40a36e38902ef76f9f4ad7637eaaadca6b8f50d14b9789f794bcf55bfcba AS base
+
+WORKDIR /home/pi/PoseNet
+
+RUN apt update
+
+### Clone PoseNet
+RUN apt install -y git-all
+RUN git clone https://github.com/16fb/posenet-python.git
+#RUN git --version
+
+WORKDIR /home/pi/PoseNet/posenet-python
+
+
+### Install and prepare python 3.7
+RUN apt-get install -y python3.7
+COPY requirements.txt requirements.txt
+RUN pip3 install -y -r requirements.txt
+
+### apt-get required modules
+RUN apt-get install libatlas-base-dev
+
+### Prepare Environment
+RUN python3 get_test_images.py
+
