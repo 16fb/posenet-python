@@ -8,18 +8,56 @@ RUN apt update
 ### Clone PoseNet
 RUN apt install -y git-all
 RUN git clone https://github.com/16fb/posenet-python.git
-#RUN git --version
 
 WORKDIR /home/pi/PoseNet/posenet-python
 
+### Install python 3.7 and pip3
+RUN apt install -y python3.7 python3-pip
+### Link 'python3'
+RUN ln -s /usr/bin/python2.7 /usr/bin/python2 && ln -s /usr/bin/python2 /usr/bin/python && ln -s /usr/bin/python3.7 /usr/bin/python3 
 
-### Install and prepare python 3.7
-RUN apt-get install -y python3.7
+### Install tensorflow 1.14
+RUN apt install -y wget
+RUN wget https://github.com/lhelontra/tensorflow-on-arm/releases/download/v1.14.0-buster/tensorflow-1.14.0-cp37-none-linux_armv7l.whl
+RUN apt install -y libhdf5-dev python-dev pkg-config
+RUN pip3 install tensorflow-1.14.0-cp37-none-linux_armv7l.whl
+
+### Install OpenCV-Contrib
+RUN apt install -y build-essential \
+            cmake \ 
+            pkg-config \
+            libjpeg-dev \ 
+            libtiff5-dev \ 
+            libjasper-dev \ 
+            libpng-dev \
+            libxvidcore-dev \ 
+            libx264-dev \
+            libatlas-base-dev \ 
+            gfortran \
+            libhdf5-dev \ 
+            libhdf5-serial-dev \ 
+            libhdf5-103 \
+            libqtgui4 \ 
+            libqtwebkit4 \ 
+            libqt4-test \ 
+            python3-pyqt5 \
+            python3-dev \
+            libffi6 \ 
+            libffi-dev \
+            libssl-dev
+RUN pip3 install pyOpenSSL opencv-contrib-python
+RUN pip3 install --upgrade pip
+
+### Install other pip modules
+
+RUN pip3 install scipy 
+            
+
+### Prepare python 3.7 Env
 COPY requirements.txt requirements.txt
-RUN pip3 install -y -r requirements.txt
+RUN pip3 install -r ./Docker/requirements.txt 
+## theres a double download of opencv and opencv-contrib... screw it.
 
-### apt-get required modules
-RUN apt-get install libatlas-base-dev
 
 ### Prepare Environment
 RUN python3 get_test_images.py
