@@ -3,10 +3,8 @@ FROM debian@sha256:d9fd40a36e38902ef76f9f4ad7637eaaadca6b8f50d14b9789f794bcf55bf
 
 WORKDIR /home/pi/PoseNet
 
-RUN apt update
-
 ### Clone PoseNet
-RUN apt install -y git-all
+RUN apt update && apt install -y git-all
 RUN git clone https://github.com/16fb/posenet-python.git
 
 WORKDIR /home/pi/PoseNet/posenet-python
@@ -17,9 +15,8 @@ RUN apt install -y python3.7 python3-pip
 RUN ln -s /usr/bin/python2.7 /usr/bin/python2 && ln -s /usr/bin/python2 /usr/bin/python && ln -s /usr/bin/python3.7 /usr/bin/python3 
 
 ### Install tensorflow 1.14
-RUN apt install -y wget
+RUN apt install -y wget libhdf5-dev python-dev pkg-config
 RUN wget https://github.com/lhelontra/tensorflow-on-arm/releases/download/v1.14.0-buster/tensorflow-1.14.0-cp37-none-linux_armv7l.whl
-RUN apt install -y libhdf5-dev python-dev pkg-config
 RUN pip3 install tensorflow-1.14.0-cp37-none-linux_armv7l.whl
 
 ### Install OpenCV-Contrib
@@ -54,8 +51,8 @@ RUN pip3 install scipy
             
 
 ### Prepare python 3.7 Env
-COPY requirements.txt requirements.txt
-RUN pip3 install -r ./Docker/requirements.txt 
+COPY NewRequirements.txt NewRequirements.txt
+RUN pip3 install -r ./Docker/NewRequirements.txt 
 ## theres a double download of opencv and opencv-contrib... screw it.
 
 

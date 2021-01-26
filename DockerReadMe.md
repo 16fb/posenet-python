@@ -2,6 +2,29 @@
 Debian buster for ARMv7l, installing everything using pip
 
 
+asn1crypto    0.24.0
+cryptography  2.6.1
+entrypoints   0.3
+keyring       17.1.1
+keyrings.alt  3.1.1
+pip           18.1
+pycrypto      2.6.1
+PyGObject     3.30.4
+pyxdg         0.25
+SecretStorage 2.3.1
+setuptools    40.8.0
+six           1.12.0
+wheel         0.32.3
+
+### PLANS
+maybe use a debian installation, and try get requirements.txt to work
+
+
+* Unable to find tensorflow???
+https://linuxize.com/post/how-to-install-tensorflow-on-debian-10/
+
+
+
 # Whats Going On + Plans
 AIM:: Get PoseNet to work on docker container (debian/armv7l)
 
@@ -61,14 +84,6 @@ different openCV as well, different from pip.
 
 ### docker save 
 docker save --output posenet 16fb/posenet:v1
-
-### remove dangling
-docker container prune -f
-docker image prune -f
-docker volume prune -f
-docker system prune
-
-Sometimes you just need restart machine
 
 ### Idea:
 run new container
