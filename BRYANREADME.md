@@ -80,7 +80,7 @@ Download and test if this will work:
 `conda install tensorflow-gpu=1`  => Python code expects TF1.0
 
 Run:  
-`python image_demo.py --model 75 --image_dir ./images --output_dir ./output`
+`python3 image_demo.py --model 75 --image_dir ./images --output_dir ./output`
 
 List Dependacies:
 `conda env export > environment.yml`

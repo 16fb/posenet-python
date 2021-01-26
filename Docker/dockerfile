@@ -12,7 +12,7 @@ WORKDIR /home/pi/PoseNet/posenet-python
 ### Install python 3.7 and pip3
 RUN apt install -y python3.7 python3-pip
 ### Link 'python3'
-RUN ln -s /usr/bin/python2.7 /usr/bin/python2 && ln -s /usr/bin/python2 /usr/bin/python && ln -s /usr/bin/python3.7 /usr/bin/python3 
+#RUN ln -s /usr/bin/python2.7 /usr/bin/python2 && ln -s /usr/bin/python2 /usr/bin/python && ln -s /usr/bin/python3.7 /usr/bin/python3 
 
 ### Install tensorflow 1.14
 RUN apt install -y wget libhdf5-dev python-dev pkg-config

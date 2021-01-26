@@ -76,9 +76,24 @@ download and install tensorflow
 download and install openc-contrib python
 download the rest from requirements.txt
 
+`docker build -t 16fb/posenet:proper .`
 
-### Later Idea
-IDEA:: Use a rasbian buster container instead
-- doubt too much speed lost
-- easier to reconstruct on rasp pi.
 
+## Running container in Atlas
+Follow documentation page on connecting to Atlas
+
+`docker load -i posenet`
+
+`docker run -it 16fb/posenet:v1`
+
+`python3 image_demo.py --model 75 --image_dir ./images --output_dir ./output`
+
+AVG FPS: -> 1.16
+
+`docker run --device=/dev/davinci_manager --device=/dev/hisi_hdc --device=/dev/davinci0 -it 16fb/posenet:v1`
+
+`python3 image_demo.py --model 75 --image_dir ./images --output_dir ./output`
+
+AVG FPS -> 1.39
+
+`python3 benchmark.py --model 75`
