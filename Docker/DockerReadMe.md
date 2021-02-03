@@ -97,3 +97,16 @@ AVG FPS: -> 1.16
 AVG FPS -> 1.39
 
 `python3 benchmark.py --model 75`
+
+### Notes
+AI Core not being utilised ->
+Main CPU Core being utilised ->
+
+NEED CONVERT TF MODEL TO PROPRIETARY FILE.
+
+
+## Running container in Rasp Pi
+`docker run -it 16fb/posenet:v1`
+`python3 image_demo.py --model 75 --image_dir ./images --output_dir ./output`
+
+AVG FPS -> 0.83
